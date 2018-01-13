@@ -13,11 +13,11 @@ import os
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, Dialog):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1000, 555)
+        MainWindow.resize(1020, 555)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 0, 371, 481))
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(20, 0, 371, 481))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -86,7 +86,7 @@ class Ui_MainWindow(object):
         self.lcdNumber_4.setObjectName("lcdNumber_4")
         self.gridLayout.addWidget(self.lcdNumber_4, 6, 1, 1, 1)
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(382, 1, 600, 471))
+        self.label.setGeometry(QtCore.QRect(402, 1, 600, 471))
         self.label.setText("")
         self.label.setObjectName("label")
         MainWindow.setCentralWidget(self.centralwidget)
