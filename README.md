@@ -50,6 +50,13 @@ Une fois ces modules installés, dans le terminal sous Linux et MacOS ou l'invit
 Sous Windows, vous pouvez aussi double-cliquer sur le fichier ```interference.py```.
 
 
+### License
+
+Le programme est distribué sous la licence GNU GPLv3.  Pour le texte complet, référez-vous au fichier `LICENSE`.
+La version courte de cette licence est que vous êtes libre d'utiliser ce logiciel, d'en modifier le code source, ainsi que de le redistribuer, que ce soit sous sa version originale ou modifiée.  Cependant, vous devez donner ces mêmes droits aux personnes qui utiliseront votre logiciel redistribué.
+
+Le code source est disponible sur [GitHub](https://github.com/Pattedetable/interference-diffraction).
+
 
 ## English
 
@@ -97,3 +104,11 @@ Once these are installed, open a terminal on Linux or MacOS (or command prompt o
 ```python interference.py```
 
 Moreover, on Windows, you can simply double-click on the ```interference.py``` file.
+
+
+### License
+
+This program is distributed under the GNU GPLv3 licence.  The details of this license can be found in the `LICENSE` file.
+The short version is that you are free to use this software, to modify its source code, and to redistribute it in either its original or modified form.  However, you have to give those same rights to the users of the redistributed software.
+
+The source code is available on [GitHub](https://github.com/Pattedetable/interference-diffraction).
