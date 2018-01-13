@@ -117,7 +117,7 @@ class Ui_MainWindow(object):
         self.lcdNumber_2.display(self.horizontalSlider_2.value()/100)
         self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.lcdNumber_2.display(self.horizontalSlider_2.value()/100))
         self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.label.setPixmap(QtGui.QPixmap(graphique.Intensite(self.horizontalSlider.value(), self.horizontalSlider_2.value()/100, self.horizontalSlider_3.value(), self.horizontalSlider_4.value()/100, self.checkBox.isChecked()))))
-        self.lcdNumber_3.display(self.horizontalSlider.value())
+        self.lcdNumber_3.display(self.horizontalSlider_3.value())
         self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.lcdNumber_3.display(self.horizontalSlider_3.value()))
         self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.label.setPixmap(QtGui.QPixmap(graphique.Intensite(self.horizontalSlider.value(), self.horizontalSlider_2.value()/100, self.horizontalSlider_3.value(), self.horizontalSlider_4.value()/100, self.checkBox.isChecked()))))
         self.lcdNumber_4.display(self.horizontalSlider_4.value()/100)
