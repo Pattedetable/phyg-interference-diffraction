@@ -1,11 +1,12 @@
-# Onde sonore stationnaire
+# Interférence et diffraction
 
+![screenshot](https://raw.githubusercontent.com/Pattedetable/interference-diffraction/master/interference_screenshot.png)
 
 ## Français
 
 Ce programme a pour but de visualiser l'effet de divers paramètres sur l'interférence et la diffraction que subit la lumière qui passe au-travers d'un réseau de fentes minces.  Dans le système d'éducation québécois, cette notion se place au niveau collégial.
 
-Le programme est disponible pour Linux, MacOS et Windows.  Il s'agit en même temps d'un projet personnel d'apprentissage de programmation.  Si vous trouvez des erreurs, sentez-vous bien à l'aise de les souligner à partir de l'onglet "Issues" sur GitHub.
+Le programme est disponible pour Linux, MacOS et Windows.  Il s'agit en même temps d'un projet personnel d'apprentissage de programmation.  Si vous trouvez des erreurs, sentez-vous bien à l'aise de les souligner à partir de l'onglet "Issues" sur [GitHub](https://github.com/Pattedetable/interference-diffraction).
 
 Le fichier utilisé pour démarrer le programme est ```interference.py```.
 
@@ -54,7 +55,7 @@ Sous Windows, vous pouvez aussi double-cliquer sur le fichier ```interference.py
 
 This program serves to illustrate how different parameters affect the interference and the diffraction of light passing through thin slits.  In Québec's education system, this notion belongs at the college level.
 
-This program is available for Linux, MacOS and Windows.  It is also a personal learning project.  Please report any errors you find using the "Issues" tab on GitHub.
+This program is available for Linux, MacOS and Windows.  It is also a personal learning project.  Please report any errors you find using the "Issues" tab on [GitHub](https://github.com/Pattedetable/interference-diffraction).
 
 The file used to start the program is ```interference.py```.
 
