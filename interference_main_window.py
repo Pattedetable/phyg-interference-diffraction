@@ -151,7 +151,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Interférence et diffraction"))
         self.label_2.setText(_translate("MainWindow", "Nombre de fentes"))
         self.pushButton.setText(_translate("MainWindow", "Quitter"))
-        self.label_6.setText(_translate("MainWindow", "Enveloppe"))
+        self.label_6.setText(_translate("MainWindow", "Enveloppe de diffraction d'une des fentes"))
         self.label_5.setText(_translate("MainWindow", "Pas du réseau (en mm)"))
         self.label_4.setText(_translate("MainWindow", "Longueur d\'onde de la lumière (en nm)"))
         self.label_3.setText(_translate("MainWindow", "Largeur des fentes (en mm)"))
