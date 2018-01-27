@@ -17,10 +17,9 @@
 
 """ Initialize windows and make the main window appear """
 import sys
-from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
-from interference_main_window import Ui_MainWindow
-from dialog import Ui_Dialog
+import interference_main_window
+import dialog_interference
 
 
 # Initialize windows
@@ -28,8 +27,8 @@ app = QApplication(sys.argv)
 window_Interference = QMainWindow()
 dialog = QDialog()
 
-ui_Interference = Ui_MainWindow()
-ui_Dial = Ui_Dialog()
+ui_Interference = interference_main_window.Ui_MainWindow()
+ui_Dial = dialog_interference.Ui_Dialog()
 
 ui_Dial.setupUi(dialog)
 ui_Interference.setupUi(window_Interference, dialog)
