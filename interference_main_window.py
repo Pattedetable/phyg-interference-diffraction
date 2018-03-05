@@ -79,6 +79,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_4 = QtWidgets.QSlider(self.centralwidget)
         self.horizontalSlider_4.setMinimum(10)
         self.horizontalSlider_4.setMaximum(50)
+        self.horizontalSlider_4.setProperty("value", 30)
         self.horizontalSlider_4.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_4.setObjectName("horizontalSlider_4")
         self.gridLayout.addWidget(self.horizontalSlider_4, 7, 0, 1, 1)
@@ -126,6 +127,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAide.menuAction())
 
 #       Create first graph
+        self.disableMultipleSlits(1)
         self.label.setPixmap(QtGui.QPixmap(graphique.Intensite(self.horizontalSlider.value(), self.horizontalSlider_2.value()/100, self.horizontalSlider_3.value(), self.horizontalSlider_4.value()/100, self.checkBox.isChecked())))
 
 
@@ -133,6 +135,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.action_propos.triggered.connect(lambda: Dialog.show())
         self.lcdNumber.display(self.horizontalSlider.value())
+        self.horizontalSlider.valueChanged['int'].connect(lambda: self.disableMultipleSlits(self.horizontalSlider.value()))
         self.horizontalSlider.valueChanged['int'].connect(lambda: self.lcdNumber.display(self.horizontalSlider.value()))
         self.horizontalSlider.valueChanged['int'].connect(lambda: self.label.setPixmap(QtGui.QPixmap(graphique.Intensite(self.horizontalSlider.value(), self.horizontalSlider_2.value()/100, self.horizontalSlider_3.value(), self.horizontalSlider_4.value()/100, self.checkBox.isChecked()))))
         self.lcdNumber_2.display(self.horizontalSlider_2.value()/100)
@@ -156,8 +159,14 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Nombre de fentes"))
         self.pushButton.setText(_translate("MainWindow", "Quitter"))
         self.label_6.setText(_translate("MainWindow", "Enveloppe de diffraction d'une des fentes"))
-        self.label_5.setText(_translate("MainWindow", "Pas du réseau (en mm)"))
+        self.label_5.setText(_translate("MainWindow", "Distance entre deux fentes successives (en mm)"))
         self.label_4.setText(_translate("MainWindow", "Longueur d\'onde de la lumière (en nm)"))
         self.label_3.setText(_translate("MainWindow", "Largeur des fentes (en mm)"))
         self.menuAide.setTitle(_translate("MainWindow", "Aide"))
         self.action_propos.setText(_translate("MainWindow", "À propos"))
+
+    def disableMultipleSlits(self, number):
+        if (number == 1):
+            self.horizontalSlider_4.setDisabled(True)
+        else:
+            self.horizontalSlider_4.setDisabled(False)

@@ -48,19 +48,21 @@ def Intensite(N, a, l, d, enveloppe):
 
     t = np.linspace(-0.03, 0.03, 5000)
 
-    plt.axis([-0.03, 0.03, 0, Inter(N, d ,l , 0.00000001)+0.5])
-    plt.grid(False)
+    figure, (ax1) = plt.subplots(1)
+
+    ax1.axis([-0.03, 0.03, 0, Inter(N, d ,l , 0.00000001)+0.5])
+    ax1.grid(False)
 
 #    plt.xlabel('$θ$ (rad)')
-    plt.xlabel('$y$ (m)')
-    plt.ylabel('$I/I_0$')
+    ax1.set_xlabel('$y$ (m)')
+    ax1.set_ylabel('$I/I_0$')
 
     if enveloppe == True:
-        plt.plot(t, Diff(a, l, t) * Inter(N, d, l, 0.00000001), 'b')
+        ax1.plot(t, Diff(a, l, t) * Inter(N, d, l, 0.00000001), 'b')
 
-    plt.plot(t, Diff(a, l, t)*Inter(N, d, l, t), 'k')
+    ax1.plot(t, Diff(a, l, t)*Inter(N, d, l, t), 'k')
 
-    plt.savefig(nom)
+    figure.savefig(nom)
 
     plt.close()
 
