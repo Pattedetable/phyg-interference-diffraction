@@ -58,9 +58,17 @@ def Intensite(N, a, l, d, enveloppe):
     ax1.set_ylabel('$I/I_0$')
 
     if enveloppe == True:
-        ax1.plot(t, Diff(a, l, t) * Inter(N, d, l, 0.00000001), 'b')
+        ax1.plot(t, Diff(a, l, t) * Inter(N, d, l, 0.00000001), 'k--')
 
-    ax1.plot(t, Diff(a, l, t)*Inter(N, d, l, t), 'k')
+# Define colour of the curve according to wavelength
+    if (l <= 500):
+        couleur = 'r'
+    elif (l <= 600):
+        couleur = 'g'
+    elif (l <= 700):
+        couleur = 'b'
+
+    ax1.plot(t, Diff(a, l, t)*Inter(N, d, l, t), couleur)
 
     figure.savefig(nom)
 
