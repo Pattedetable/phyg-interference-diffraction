@@ -62,11 +62,11 @@ def Intensite(N, a, l, d, enveloppe):
 
 # Define colour of the curve according to wavelength
     if (l <= 500):
-        couleur = 'r'
+        couleur = 'b'
     elif (l <= 600):
         couleur = 'g'
     elif (l <= 700):
-        couleur = 'b'
+        couleur = 'r'
 
     ax1.plot(t, Diff(a, l, t)*Inter(N, d, l, t), couleur)
 
