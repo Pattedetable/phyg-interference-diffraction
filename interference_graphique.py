@@ -50,7 +50,7 @@ def Intensite(N, a, l, d, enveloppe, points):
     #    def Diff(a, l, t):
     #        return np.sin(np.pi*a*np.sin(t)*1000000/l)**2/((np.pi*a*np.sin(t)*1000000/l)**2)
 
-        t = np.linspace(-0.03, 0.03, 5000)
+        t = np.linspace(-0.03, 0.03, 1000)
 
         ax1.axis([-0.03, 0.03, 0, Inter(N, d, l, 0.00000001) + 0.5])
         ax1.grid(False)
@@ -114,14 +114,25 @@ def Intensite(N, a, l, d, enveloppe, points):
 
         ax1.set_yticks([])
 
-        grille = np.linspace(-0.03,0.03,1000)
+        grillex = np.linspace(-0.03,0.03,1000)
+        grilley = np.linspace(-0.03,0.03,200)
 
         alpha = 3000000
 
-        X,Y = np.meshgrid(grille,grille)
+        ax1.set_xlabel('$y$ (m)')
+
+        # Define colour of the curve according to wavelength
+        if (l <= 500):
+            couleur = blue1
+        elif (l <= 600):
+            couleur = green1
+        elif (l <= 700):
+            couleur = red1
+
+        X,Y = np.meshgrid(grillex,grilley)
         Z = np.sin(np.pi*a*np.sin(np.arctan(X))*1000000/l)**2/((np.pi*a*np.sin(np.arctan(X))*1000000/l)**2)*np.sin(N*np.pi*d*np.sin(np.arctan(X))*1000000/l)**2/(np.sin(np.pi*d*np.sin(np.arctan(X))*1000000/l)**2)*np.exp(-alpha*Y**2)
 
-        ax1.pcolormesh(X,Y,Z, cmap=red1)
+        ax1.pcolormesh(X,Y,Z, cmap=couleur)
 
     figure.savefig(nom)
 
