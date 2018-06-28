@@ -24,10 +24,8 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-#import interference_graphique as graphique
 import os
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
