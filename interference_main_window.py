@@ -29,6 +29,9 @@ import os
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, Dialog):
+
+#        self.figure = Figure()
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1020, 555)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
