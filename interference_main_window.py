@@ -333,4 +333,3 @@ class Ui_MainWindow(object):
             ax1.pcolormesh(X,Y,Z, cmap=couleur)
 
         self.canvas.draw()
-#        figure.savefig(nom)
