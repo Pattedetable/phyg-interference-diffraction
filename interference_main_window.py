@@ -47,10 +47,12 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
 
-        self.horizontalSlider_3 = QtWidgets.QSlider(self.centralwidget)
-        self.horizontalSlider_3.setMinimum(400)
-        self.horizontalSlider_3.setMaximum(700)
-        self.horizontalSlider_3.setProperty("value", 500)
+        self.horizontalSlider_3 = QtWidgets.QSlider(self.centralwidget) # Longueur d'onde
+        self.horizontalSlider_3.setMinimum(8)
+        self.horizontalSlider_3.setMaximum(14)
+        self.horizontalSlider_3.setSingleStep(1)
+        self.horizontalSlider_3.setPageStep(2)
+        self.horizontalSlider_3.setProperty("value", 10)
         self.horizontalSlider_3.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_3.setObjectName("horizontalSlider_3")
         self.gridLayout.addWidget(self.horizontalSlider_3, 7, 0, 1, 1)
@@ -102,10 +104,10 @@ class Ui_MainWindow(object):
         self.comboBox.addItem("")
         self.gridLayout.addWidget(self.comboBox, 1, 0, 1, 1)
 
-        self.horizontalSlider_4 = QtWidgets.QSlider(self.centralwidget)
-        self.horizontalSlider_4.setMinimum(10)
-        self.horizontalSlider_4.setMaximum(50)
-        self.horizontalSlider_4.setProperty("value", 30)
+        self.horizontalSlider_4 = QtWidgets.QSlider(self.centralwidget) # Distance entre les fentes
+        self.horizontalSlider_4.setMinimum(2)
+        self.horizontalSlider_4.setMaximum(10)
+        self.horizontalSlider_4.setProperty("value", 6)
         self.horizontalSlider_4.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_4.setObjectName("horizontalSlider_4")
         self.gridLayout.addWidget(self.horizontalSlider_4, 9, 0, 1, 1)
@@ -175,11 +177,11 @@ class Ui_MainWindow(object):
         self.lcdNumber_2.display(self.horizontalSlider_2.value()/100)
         self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.lcdNumber_2.display(self.horizontalSlider_2.value()/100))
         self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.Intensite())
-        self.lcdNumber_3.display(self.horizontalSlider_3.value())
-        self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.lcdNumber_3.display(self.horizontalSlider_3.value()))
+        self.lcdNumber_3.display(self.horizontalSlider_3.value()*50)
+        self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.lcdNumber_3.display(self.horizontalSlider_3.value()*50))
         self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.Intensite())
-        self.lcdNumber_4.display(self.horizontalSlider_4.value()/100)
-        self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.lcdNumber_4.display(self.horizontalSlider_4.value()/100))
+        self.lcdNumber_4.display(self.horizontalSlider_4.value()/20)
+        self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.lcdNumber_4.display(self.horizontalSlider_4.value()/20))
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.Intensite())
         self.checkBox.clicked.connect(lambda: self.Intensite())
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.disableEnveloppe(self.comboBox.currentIndex()))
@@ -225,8 +227,8 @@ class Ui_MainWindow(object):
 
         N = self.horizontalSlider.value()
         a = self.horizontalSlider_2.value()/100
-        l = self.horizontalSlider_3.value()
-        d = self.horizontalSlider_4.value()/100
+        l = self.horizontalSlider_3.value()*50
+        d = self.horizontalSlider_4.value()/20
         enveloppe = self.checkBox.isChecked()
         points = self.comboBox.currentIndex()
 
