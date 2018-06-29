@@ -50,7 +50,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_3.setObjectName("horizontalSlider_3")
         self.gridLayout.addWidget(self.horizontalSlider_3, 7, 0, 1, 1)
 
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget) # Quitter
         self.pushButton.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton, 13, 0, 1, 1)
 
@@ -83,7 +83,7 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 6, 0, 1, 1)
 
-        self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox = QtWidgets.QCheckBox(self.centralwidget) # Enveloppe
         self.checkBox.setText("")
         self.checkBox.setObjectName("checkBox")
         self.gridLayout.addWidget(self.checkBox, 11, 1, 1, 1)
@@ -92,7 +92,7 @@ class Ui_MainWindow(object):
         self.label_1.setObjectName("label_1")
         self.gridLayout.addWidget(self.label_1, 0, 0, 1, 1)
 
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
+        self.comboBox = QtWidgets.QComboBox(self.centralwidget) # Choix du graphique
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
@@ -110,8 +110,8 @@ class Ui_MainWindow(object):
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 4, 0, 1, 1)
 
-        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem, 12, 0, 1, 1)
+#        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+#        self.gridLayout.addItem(spacerItem, 12, 0, 1, 1)
 
         self.lcdNumber = QtWidgets.QLCDNumber(self.centralwidget)
         self.lcdNumber.setObjectName("lcdNumber")
@@ -135,9 +135,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.canvas.sizePolicy().hasHeightForWidth())
         self.canvas.setSizePolicy(sizePolicy)
-        #self.canvas.setScaledContents(True)
         self.canvas.setObjectName("canvas")
-        self.gridLayout.addWidget(self.canvas, 0, 2, 12, 1)
+        self.gridLayout.addWidget(self.canvas, 0, 2, 14, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -156,8 +155,6 @@ class Ui_MainWindow(object):
 
 #       Create first graph
         self.comboBox.setCurrentIndex(0)
-        self.disableMultipleSlits(1)
-        self.disableEnveloppe(1)
         self.Intensite()
 
 
@@ -165,7 +162,6 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.action_propos.triggered.connect(lambda: Dialog.show())
         self.lcdNumber.display(self.horizontalSlider.value())
-        self.horizontalSlider.valueChanged['int'].connect(lambda: self.disableMultipleSlits(self.horizontalSlider.value()))
         self.horizontalSlider.valueChanged['int'].connect(lambda: self.lcdNumber.display(self.horizontalSlider.value()))
         self.horizontalSlider.valueChanged['int'].connect(lambda: self.Intensite())
         self.lcdNumber_2.display(self.horizontalSlider_2.value()/100)
@@ -178,7 +174,6 @@ class Ui_MainWindow(object):
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.lcdNumber_4.display(self.horizontalSlider_4.value()/20))
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.Intensite())
         self.checkBox.clicked.connect(lambda: self.Intensite())
-        self.comboBox.currentIndexChanged['QString'].connect(lambda: self.disableEnveloppe(self.comboBox.currentIndex()))
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.Intensite())
         self.pushButton.clicked.connect(lambda: Dialog.close())
         self.pushButton.clicked.connect(lambda: plt.close())
@@ -201,18 +196,14 @@ class Ui_MainWindow(object):
         self.comboBox.setItemText(1, _translate("MainWindow", "Intensité"))
 
 
-    def disableMultipleSlits(self, number):
-        if (number == 1):
-            self.horizontalSlider_4.setDisabled(True)
-        else:
-            self.horizontalSlider_4.setDisabled(False)
+    def disableMultipleSlits(self, booleen):
+        self.horizontalSlider_4.setDisabled(booleen)
+        self.lcdNumber_4.setDisabled(booleen)
+        self.label_5.setDisabled(booleen)
 
-    def disableEnveloppe(self, number):
-        if (number == 0):
-            self.checkBox.setDisabled(True)
-        else:
-            self.checkBox.setDisabled(False)
-
+    def disableEnveloppe(self, booleen):
+        self.checkBox.setDisabled(booleen)
+        self.label_6.setDisabled(booleen)
 
     def Intensite(self):
         """
@@ -227,6 +218,9 @@ class Ui_MainWindow(object):
         points = self.comboBox.currentIndex()
 
         self.figure.clear()
+
+        self.disableEnveloppe(points == 0)
+        self.disableMultipleSlits(N == 1)
 
         ax1 = self.figure.add_subplot(111)
 
