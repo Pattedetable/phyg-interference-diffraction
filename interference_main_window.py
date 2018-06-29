@@ -45,7 +45,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_3.setMaximum(14)
         self.horizontalSlider_3.setSingleStep(1)
         self.horizontalSlider_3.setPageStep(2)
-        self.horizontalSlider_3.setProperty("value", 10)
+        self.horizontalSlider_3.setProperty("value", 13)
         self.horizontalSlider_3.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_3.setObjectName("horizontalSlider_3")
         self.gridLayout.addWidget(self.horizontalSlider_3, 7, 0, 1, 1)
@@ -58,7 +58,7 @@ class Ui_MainWindow(object):
         self.label_6.setObjectName("label_6")
         self.gridLayout.addWidget(self.label_6, 11, 0, 1, 1)
 
-        self.horizontalSlider_2 = QtWidgets.QSlider(self.centralwidget)
+        self.horizontalSlider_2 = QtWidgets.QSlider(self.centralwidget) # Largeur des fentes
         self.horizontalSlider_2.setMinimum(2)
         self.horizontalSlider_2.setMaximum(16)
         self.horizontalSlider_2.setSingleStep(1)
@@ -71,9 +71,10 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 8, 0, 1, 1)
 
-        self.horizontalSlider = QtWidgets.QSlider(self.centralwidget)
+        self.horizontalSlider = QtWidgets.QSlider(self.centralwidget) # Nombre de fentes
         self.horizontalSlider.setMinimum(1)
         self.horizontalSlider.setMaximum(10)
+        self.horizontalSlider.setProperty("value", 2)
         self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setObjectName("horizontalSlider")
         self.gridLayout.addWidget(self.horizontalSlider, 3, 0, 1, 1)
@@ -128,7 +129,7 @@ class Ui_MainWindow(object):
         self.lcdNumber_4.setObjectName("lcdNumber_4")
         self.gridLayout.addWidget(self.lcdNumber_4, 8, 1, 1, 1)
 
-        self.canvas = FigureCanvas(self.figure)
+        self.canvas = FigureCanvas(self.figure)  # Graphique
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -136,7 +137,7 @@ class Ui_MainWindow(object):
         self.canvas.setSizePolicy(sizePolicy)
         #self.canvas.setScaledContents(True)
         self.canvas.setObjectName("canvas")
-        self.gridLayout.addWidget(self.canvas, 0, 2, 12, 1)  # Graphique
+        self.gridLayout.addWidget(self.canvas, 0, 2, 12, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -154,7 +155,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuAide.menuAction())
 
 #       Create first graph
-        self.comboBox.setCurrentIndex(1)
+        self.comboBox.setCurrentIndex(0)
         self.disableMultipleSlits(1)
         self.disableEnveloppe(1)
         self.Intensite()
