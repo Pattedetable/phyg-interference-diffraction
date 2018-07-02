@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow, Dialog):
+    def setupUi(self, MainWindow, Dialog, parent):
 
         self.figure = plt.figure()
 
@@ -177,7 +177,7 @@ class Ui_MainWindow(object):
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.Intensite())
         self.pushButton.clicked.connect(lambda: Dialog.close())
         self.pushButton.clicked.connect(lambda: plt.close())
-        self.pushButton.clicked.connect(lambda: MainWindow.close())
+        self.pushButton.clicked.connect(lambda: self.fermerEtAfficher(MainWindow, parent))
 
 
     def retranslateUi(self, MainWindow):
@@ -204,6 +204,11 @@ class Ui_MainWindow(object):
     def disableEnveloppe(self, booleen):
         self.checkBox.setDisabled(booleen)
         self.label_6.setDisabled(booleen)
+
+    def fermerEtAfficher(self, MainWindow, window_autre):
+        if window_autre:
+            window_autre.show()
+        MainWindow.close()
 
     def Intensite(self):
         """

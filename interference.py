@@ -31,7 +31,7 @@ ui_Interference = interference_main_window.Ui_MainWindow()
 ui_Dial = dialog_interference.Ui_Dialog()
 
 ui_Dial.setupUi(dialog)
-ui_Interference.setupUi(window_Interference, dialog)
+ui_Interference.setupUi(window_Interference, dialog, None)
 
 # Make main window appear
 window_Interference.show()
