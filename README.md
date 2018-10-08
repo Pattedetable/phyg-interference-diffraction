@@ -35,11 +35,7 @@ Pour tous les systèmes d'exploitation supportés, à partir de la version 3.4, 
 
 Si le numéro de version affiché à l'écran commence par 2, dans tout ce qui suit, utilisez `python3` au lieu de `python`, et `pip3` au lieu de `pip`.
 
-Vous pouvez vous servir de `pip` pour installer les divers modules nécessaires.  Par exemple, pour installer Numpy sur Linux, une fois les droits administrateurs obtenus, entrez dans un terminal :
-
-```python pip install numpy```
-
-Sur Windows, vous n'avez pas besoin des droits administrateurs, et la commande est plutôt :
+Vous pouvez vous servir de `pip` pour installer les divers modules nécessaires.  Par exemple, pour installer Numpy, entrez dans un terminal (ou invite de commande) :
 
 ```pip install numpy```
 
