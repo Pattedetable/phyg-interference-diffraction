@@ -175,7 +175,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.Intensite())
         self.checkBox.clicked.connect(lambda: self.Intensite())
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.Intensite())
-        self.pushButton.clicked.connect(lambda: Dialog.close())
+#        self.pushButton.clicked.connect(lambda: Dialog.close())
         self.pushButton.clicked.connect(lambda: plt.close())
         self.pushButton.clicked.connect(lambda: self.fermerEtAfficher(MainWindow, parent))
 
@@ -206,8 +206,8 @@ class Ui_MainWindow(object):
         self.label_6.setDisabled(booleen)
 
     def fermerEtAfficher(self, MainWindow, window_autre):
-        if window_autre:
-            window_autre.show()
+#        if window_autre:
+#            window_autre.show()
         MainWindow.close()
 
     def Intensite(self):
