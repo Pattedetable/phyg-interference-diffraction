@@ -30,7 +30,6 @@ dialog = QDialog()
 
 langue_sys = locale.getdefaultlocale()[0]
 langue_sys = langue_sys[0:2]
-print(langue_sys)
 translator = QtCore.QTranslator()
 if langue_sys == "fr":
     langue = "fr_CA"
