@@ -17,15 +17,27 @@
 
 """ Initialize windows and make the main window appear """
 import sys
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 import interference_main_window
 import dialog_interference
-
+import locale
 
 # Initialize windows
 app = QApplication(sys.argv)
 window_Interference = QMainWindow()
 dialog = QDialog()
+
+langue_sys = locale.getdefaultlocale()[0]
+langue_sys = langue_sys[0:2]
+print(langue_sys)
+translator = QtCore.QTranslator()
+if langue_sys == "fr":
+    langue = "fr_CA"
+else:
+    langue = "en_CA"
+translator.load(langue)
+app.installTranslator(translator)
 
 ui_Interference = interference_main_window.Ui_MainWindow()
 ui_Dial = dialog_interference.Ui_Dialog()
