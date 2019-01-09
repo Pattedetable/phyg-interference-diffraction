@@ -208,7 +208,8 @@ class Ui_MainWindow(object):
     def fermerEtAfficher(self, MainWindow, window_autre):
 #        if window_autre:
 #            window_autre.show()
-        MainWindow.close()
+        app = QtWidgets.QApplication.instance()
+        app.closeAllWindows()
 
     def Intensite(self):
         """
