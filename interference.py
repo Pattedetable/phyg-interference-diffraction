@@ -21,14 +21,20 @@ from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 import interference_main_window
 import dialog_interference
-import locale
+import platform
+import locale, ctypes
 
 # Initialize windows
 app = QApplication(sys.argv)
 window_Interference = QMainWindow()
 dialog = QDialog()
 
-langue_sys = locale.getdefaultlocale()[0]
+systeme_exploitation = platform.system()
+if systeme_exploitation == 'Windows':
+    langwin = ctypes.windll.kernel32
+    langue_sys = locale.windows_locale[langwin.GetUserDefaultUILanguage()]
+elif systeme_exploitation == 'Darwin' or 'Linux':
+    langue_sys = locale.getdefaultlocale()[0]
 langue_sys = langue_sys[0:2]
 translator = QtCore.QTranslator()
 if langue_sys == "fr":
