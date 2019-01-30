@@ -16,12 +16,11 @@
 #
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-import os
+from PyQt5 import QtCore, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap
+
+from interference_calcul import Graphique
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow, Dialog, parent):
@@ -155,26 +154,31 @@ class Ui_MainWindow(object):
 
 #       Create first graph
         self.comboBox.setCurrentIndex(0)
-        self.Intensite()
+        self.disableMultipleSlits(self.horizontalSlider.value() == 1)
+        self.disableEnveloppe(self.comboBox.currentIndex() == 0)
+        self.graph = Graphique()
+        self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex())
 
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.action_propos.triggered.connect(lambda: Dialog.show())
         self.lcdNumber.display(self.horizontalSlider.value())
+        self.horizontalSlider.valueChanged['int'].connect(lambda: self.disableMultipleSlits(self.horizontalSlider.value() == 1))
         self.horizontalSlider.valueChanged['int'].connect(lambda: self.lcdNumber.display(self.horizontalSlider.value()))
-        self.horizontalSlider.valueChanged['int'].connect(lambda: self.Intensite())
+        self.horizontalSlider.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
         self.lcdNumber_2.display(self.horizontalSlider_2.value()/100)
         self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.lcdNumber_2.display(self.horizontalSlider_2.value()/100))
-        self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.Intensite())
+        self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
         self.lcdNumber_3.display(self.horizontalSlider_3.value()*50)
         self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.lcdNumber_3.display(self.horizontalSlider_3.value()*50))
-        self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.Intensite())
+        self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
         self.lcdNumber_4.display(self.horizontalSlider_4.value()/20)
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.lcdNumber_4.display(self.horizontalSlider_4.value()/20))
-        self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.Intensite())
-        self.checkBox.clicked.connect(lambda: self.Intensite())
-        self.comboBox.currentIndexChanged['QString'].connect(lambda: self.Intensite())
+        self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
+        self.checkBox.clicked.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
+        self.comboBox.currentIndexChanged['QString'].connect(lambda: self.disableEnveloppe(self.comboBox.currentIndex() == 0))
+        self.comboBox.currentIndexChanged['QString'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
 #        self.pushButton.clicked.connect(lambda: Dialog.close())
         self.pushButton.clicked.connect(lambda: plt.close())
         self.pushButton.clicked.connect(lambda: self.fermerEtAfficher(MainWindow, parent))
@@ -210,122 +214,3 @@ class Ui_MainWindow(object):
 #            window_autre.show()
         app = QtWidgets.QApplication.instance()
         app.closeAllWindows()
-
-    def Intensite(self):
-        """
-        Compute the total intensity due to both the inteference and the diffraction of light going through slits
-        """
-
-        N = self.horizontalSlider.value()
-        a = self.horizontalSlider_2.value()/100
-        l = self.horizontalSlider_3.value()*50
-        d = self.horizontalSlider_4.value()/20
-        enveloppe = self.checkBox.isChecked()
-        points = self.comboBox.currentIndex()
-
-        self.figure.clear()
-
-        self.disableEnveloppe(points == 0)
-        self.disableMultipleSlits(N == 1)
-
-        ax1 = self.figure.add_subplot(111)
-
-        if points == 1:
-            def Inter(t):
-                """
-                Intensity of light going through a series of slits due to the interference
-                """
-                return np.sin(N*np.pi*d*np.sin(np.arctan(t))*1000000/l)**2/(np.sin(np.pi*d*np.sin(np.arctan(t))*1000000/l)**2)
-
-
-            def Diff(t):
-                """
-                Intensity of light going through a series of slits due to the diffraction
-                """
-                return np.sin(np.pi*a*np.sin(np.arctan(t))*1000000/l)**2/((np.pi*a*np.sin(np.arctan(t))*1000000/l)**2)
-
-            t = np.linspace(-0.03, 0.03, 5000)
-
-            ax1.axis([-0.03, 0.03, 0, Inter(0.00000001) + 0.5])
-            ax1.grid(False)
-
-        #    plt.xlabel('$θ$ (rad)')
-            ax1.set_xlabel('$y$ (m)')
-            ax1.set_ylabel('$I/I_0$')
-
-            if enveloppe == True:
-                ax1.plot(t, Diff(t) * Inter(0.00000001), 'k--')
-
-        # Define colour of the curve according to wavelength
-            if (l <= 500):
-                couleur = 'b'
-            elif (l <= 600):
-                couleur = 'g'
-            elif (l <= 700):
-                couleur = 'r'
-
-            ax1.plot(t, Diff(t)*Inter(t), couleur)
-
-        else:
-            largeur = 0.1#/(N-1)
-
-            cdictr = {'red':
-                        ((0.0, 0.0, 0.0),
-                        (largeur, 1.0, 1.0),
-                        (1.0, 1.0, 1.0)),
-                    'green':
-                        ((0.0, 0.0, 0.0),
-                        (1.0, 0.0, 0.0)),
-                    'blue':
-                        ((0.0, 0.0, 0.0),
-                        (1.0, 0.0, 0.0))}
-
-            cdictb= {'red':
-                        ((0.0, 0.0, 0.0),
-                        (1.0, 0.0, 0.0)),
-                    'green':
-                        ((0.0, 0.0, 0.0),
-                        (1.0, 0.0, 0.0)),
-                    'blue':
-                        ((0.0, 0.0, 0.0),
-                        (largeur, 1.0, 1.0),
-                        (1.0, 1.0, 1.0))}
-
-            cdictg= {'red':
-                        ((0.0, 0.0, 0.0),
-                        (1.0, 0.0, 0.0)),
-                    'green':
-                        ((0.0, 0.0, 0.0),
-                        (largeur, 1.0, 1.0),
-                        (1.0, 1.0, 1.0)),
-                    'blue':
-                        ((0.0, 0.0, 0.0),
-                        (1.0, 0.0, 0.0))}
-
-            red1 = LinearSegmentedColormap('red1', cdictr)
-            blue1 = LinearSegmentedColormap('blue1', cdictb)
-            green1 = LinearSegmentedColormap('green1', cdictg)
-
-            ax1.set_yticks([])
-
-            grillex = np.linspace(-0.03,0.03,1000)
-            grilley = np.linspace(-0.03,0.03,200)
-
-            alpha = 3000000
-
-            ax1.set_xlabel('$y$ (m)')
-
-            # Define colour of the curve according to wavelength
-            if (l <= 500):
-                couleur = blue1
-            elif (l <= 600):
-                couleur = green1
-            elif (l <= 700):
-                couleur = red1
-
-            X,Y = np.meshgrid(grillex,grilley)
-            Z = np.sin(np.pi*a*np.sin(np.arctan(X))*1000000/l)**2/((np.pi*a*np.sin(np.arctan(X))*1000000/l)**2)*np.sin(N*np.pi*d*np.sin(np.arctan(X))*1000000/l)**2/(np.sin(np.pi*d*np.sin(np.arctan(X))*1000000/l)**2)*np.exp(-alpha*Y**2)
-
-            ax1.pcolormesh(X,Y,Z, cmap=couleur)
-
-        self.canvas.draw()
