@@ -176,7 +176,7 @@ class Ui_MainWindow(object):
         self.lcdNumber_4.display(self.horizontalSlider_4.value()/20)
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.lcdNumber_4.display(self.horizontalSlider_4.value()/20))
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
-        self.checkBox.clicked.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
+        self.checkBox.toggled.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.disableEnveloppe(self.comboBox.currentIndex() == 0))
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
 #        self.pushButton.clicked.connect(lambda: Dialog.close())
