@@ -1,12 +1,12 @@
 # Interférence et diffraction
 
-![screenshot](https://raw.githubusercontent.com/Pattedetable/interference-diffraction/master/interference_screenshot.png)
+![screenshot](https://raw.githubusercontent.com/Pattedetable/phyg-interference-diffraction/master/interference_screenshot.png)
 
 ## Français
 
 Ce programme a pour but de visualiser l'effet de divers paramètres sur l'interférence et la diffraction que subit la lumière qui passe au-travers d'un réseau de fentes minces.  Dans le système d'éducation québécois, cette notion se place au niveau collégial.
 
-Le programme est disponible pour Linux, MacOS et Windows.  Il s'agit en même temps d'un projet personnel d'apprentissage de programmation.  Si vous trouvez des erreurs, sentez-vous bien à l'aise de les souligner à partir de l'onglet "Issues" sur [GitHub](https://github.com/Pattedetable/interference-diffraction).
+Le programme est disponible pour Linux, MacOS et Windows.  Il s'agit en même temps d'un projet personnel d'apprentissage de programmation.  Si vous trouvez des erreurs, sentez-vous bien à l'aise de les souligner à partir de l'onglet "Issues" sur [GitHub](https://github.com/Pattedetable/phyg-interference-diffraction).
 
 Le fichier utilisé pour démarrer le programme est ```interference.py```.
 
@@ -51,16 +51,16 @@ Sous Windows, vous pouvez aussi double-cliquer sur le fichier ```interference.py
 Le programme est distribué sous la licence GNU GPLv3.  Pour le texte complet, référez-vous au fichier `LICENSE`.
 La version courte de cette licence est que vous êtes libre d'utiliser ce logiciel, d'en modifier le code source, ainsi que de le redistribuer, que ce soit sous sa version originale ou modifiée.  Cependant, vous devez donner ces mêmes droits aux personnes qui utiliseront votre logiciel redistribué.
 
-Le code source est disponible sur [GitHub](https://github.com/Pattedetable/interference-diffraction).
+Le code source est disponible sur [GitHub](https://github.com/Pattedetable/phyg-interference-diffraction).
 
-Ce logiciel utilise des bibliothèques de Qt sous la licence LGPLv3, ainsi que de Python, Numpy et Matplotlib. 
+Ce logiciel utilise des bibliothèques de Qt sous la licence LGPLv3, ainsi que de Python, Numpy et Matplotlib.
 
 
 ## English
 
 This program serves to illustrate how different parameters affect the interference and the diffraction of light passing through thin slits.  In Québec's education system, this notion belongs at the college level.
 
-This program is available for Linux, MacOS and Windows.  It is also a personal learning project.  Please report any errors you find using the "Issues" tab on [GitHub](https://github.com/Pattedetable/interference-diffraction).
+This program is available for Linux, MacOS and Windows.  It is also a personal learning project.  Please report any errors you find using the "Issues" tab on [GitHub](https://github.com/Pattedetable/phyg-interference-diffraction).
 
 The file used to start the program is ```interference.py```.
 
@@ -109,6 +109,6 @@ Moreover, on Windows, you can simply double-click on the ```interference.py``` f
 This program is distributed under the GNU GPLv3 licence.  The details of this license can be found in the `LICENSE` file.
 The short version is that you are free to use this software, to modify its source code, and to redistribute it in either its original or modified form.  However, you have to give those same rights to the users of the redistributed software.
 
-The source code is available on [GitHub](https://github.com/Pattedetable/interference-diffraction).
+The source code is available on [GitHub](https://github.com/Pattedetable/phyg-interference-diffraction).
 
 This software uses libraries from Qt under the LGPLv3, Python, Numpy and Matplotlib.
