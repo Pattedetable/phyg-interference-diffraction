@@ -2,6 +2,8 @@
 
 ![screenshot](https://raw.githubusercontent.com/Pattedetable/phyg-interference-diffraction/master/interference_screenshot.png)
 
+_The English version follows_
+
 ## Français
 
 Ce programme a pour but de visualiser l'effet de divers paramètres sur l'interférence et la diffraction que subit la lumière qui passe au-travers d'un réseau de fentes minces.  Dans le système d'éducation québécois, cette notion se place au niveau collégial.
