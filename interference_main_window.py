@@ -186,8 +186,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.lcdNumber_4.display(self.horizontalSlider_4.value()/20))
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
         self.checkBox.toggled.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
-        self.checkBox_2.toggled.connect(lambda: self.disableEnveloppe(self.checkBox_2.isChecked()))
-        self.checkBox_2.toggled.connect(lambda: self.disableLargeur(self.checkBox_2.isChecked()))
+        self.checkBox_2.toggled.connect(lambda: self.disableDiffraction(self.checkBox_2.isChecked()))
         self.checkBox_2.toggled.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.disableEnveloppe(self.comboBox.currentIndex() == 0))
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
@@ -222,14 +221,13 @@ class Ui_MainWindow(object):
         self.checkBox.setDisabled(booleen)
         self.label_6.setDisabled(booleen)
 
-    def disableDisableDiffraction(self, booleen):
-        self.checkBox_2.setDisabled(booleen)
-        self.label_7.setDisabled(booleen)
-
-    def disableLargeur(self, booleen):
+    def disableDiffraction(self, booleen):
         self.horizontalSlider_2.setDisabled(booleen)
         self.lcdNumber_2.setDisabled(booleen)
         self.label_3.setDisabled(booleen)
+#        if self.comboBox.currentIndex() == 1:
+#            self.checkBox.setDisabled(booleen)
+#            self.label_6.setDisabled(booleen)
 
 
     def fermerEtAfficher(self, MainWindow, window_autre):
