@@ -1,5 +1,5 @@
 #
-# Copyright 2018-2020 Manuel Barrette
+# Copyright 2018-2021 Manuel Barrette
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@ from matplotlib.colors import LinearSegmentedColormap
 
 
 class Graphique():
-    def Intensite(self, canvas, figure, slider1, slider2, slider3, slider4, checkbox, combobox):
+    def Intensite(self, canvas, figure, slider1, slider2, slider3, slider4, checkbox, combobox, checkbox2):
         """
         Compute the total intensity due to both the inteference and the diffraction of light going through slits
         """
@@ -31,6 +31,7 @@ class Graphique():
         d = slider4/20
         enveloppe = checkbox
         points = combobox
+        diffraction = checkbox2
 
         figure.clear()
 
@@ -70,7 +71,10 @@ class Graphique():
             elif (l <= 700):
                 couleur = 'r'
 
-            ax1.plot(t, Diff(t)*Inter(t), couleur)
+            if diffraction == False:
+                ax1.plot(t, Diff(t)*Inter(t), couleur)
+            else:
+                ax1.plot(t, Inter(t), couleur)
 
         else:
             largeur = 0.1#/(N-1)
@@ -130,8 +134,11 @@ class Graphique():
                 couleur = red1
 
             X,Y = np.meshgrid(grillex,grilley)
-            Z = np.sin(np.pi*a*np.sin(np.arctan(X))*1000000/l)**2/((np.pi*a*np.sin(np.arctan(X))*1000000/l)**2)*np.sin(N*np.pi*d*np.sin(np.arctan(X))*1000000/l)**2/(np.sin(np.pi*d*np.sin(np.arctan(X))*1000000/l)**2)*np.exp(-alpha*Y**2)
+            if diffraction == False:
+                Z = np.sin(np.pi*a*np.sin(np.arctan(X))*1000000/l)**2/((np.pi*a*np.sin(np.arctan(X))*1000000/l)**2)*np.sin(N*np.pi*d*np.sin(np.arctan(X))*1000000/l)**2/(np.sin(np.pi*d*np.sin(np.arctan(X))*1000000/l)**2)*np.exp(-alpha*Y**2)
+            else:
+                Z = 4*(np.cos(0.5*N*np.pi*d*np.sin(np.arctan(X))*1000000/l))**2*np.exp(-alpha*Y**2)
 
-            ax1.pcolormesh(X,Y,Z, cmap=couleur)
+            ax1.pcolormesh(X,Y,Z, cmap=couleur, shading='auto')
 
         canvas.draw()

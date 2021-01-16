@@ -51,6 +51,10 @@
         <source>Intensité</source>
         <translation>Intensity</translation>
     </message>
+    <message>
+        <source>Négliger la diffraction</source>
+        <translation>Neglect diffraction</translation>
+    </message>
 </context>
 <context>
     <name>Dialog</name>

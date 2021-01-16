@@ -1,5 +1,5 @@
 #
-# Copyright 2018-2020 Manuel Barrette
+# Copyright 2018-2021 Manuel Barrette
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -109,6 +109,15 @@ class Ui_MainWindow(object):
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 4, 0, 1, 1)
 
+        self.label_7 = QtWidgets.QLabel(self.centralwidget)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout.addWidget(self.label_7, 12, 0, 1, 1)
+
+        self.checkBox_2 = QtWidgets.QCheckBox(self.centralwidget) # Négliger diffraction
+        self.checkBox_2.setText("")
+        self.checkBox_2.setObjectName("checkBox_2")
+        self.gridLayout.addWidget(self.checkBox_2, 12, 1, 1, 1)
+
 #        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
 #        self.gridLayout.addItem(spacerItem, 12, 0, 1, 1)
 
@@ -157,7 +166,7 @@ class Ui_MainWindow(object):
         self.disableMultipleSlits(self.horizontalSlider.value() == 1)
         self.disableEnveloppe(self.comboBox.currentIndex() == 0)
         self.graph = Graphique()
-        self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex())
+        self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked())
 
 
         self.retranslateUi(MainWindow)
@@ -166,19 +175,22 @@ class Ui_MainWindow(object):
         self.lcdNumber.display(self.horizontalSlider.value())
         self.horizontalSlider.valueChanged['int'].connect(lambda: self.disableMultipleSlits(self.horizontalSlider.value() == 1))
         self.horizontalSlider.valueChanged['int'].connect(lambda: self.lcdNumber.display(self.horizontalSlider.value()))
-        self.horizontalSlider.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
+        self.horizontalSlider.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
         self.lcdNumber_2.display(self.horizontalSlider_2.value()/100)
         self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.lcdNumber_2.display(self.horizontalSlider_2.value()/100))
-        self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
+        self.horizontalSlider_2.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
         self.lcdNumber_3.display(self.horizontalSlider_3.value()*50)
         self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.lcdNumber_3.display(self.horizontalSlider_3.value()*50))
-        self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
+        self.horizontalSlider_3.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
         self.lcdNumber_4.display(self.horizontalSlider_4.value()/20)
         self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.lcdNumber_4.display(self.horizontalSlider_4.value()/20))
-        self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
-        self.checkBox.toggled.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
+        self.horizontalSlider_4.valueChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
+        self.checkBox.toggled.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
+        self.checkBox_2.toggled.connect(lambda: self.disableEnveloppe(self.checkBox_2.isChecked()))
+        self.checkBox_2.toggled.connect(lambda: self.disableLargeur(self.checkBox_2.isChecked()))
+        self.checkBox_2.toggled.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
         self.comboBox.currentIndexChanged['QString'].connect(lambda: self.disableEnveloppe(self.comboBox.currentIndex() == 0))
-        self.comboBox.currentIndexChanged['QString'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex()))
+        self.comboBox.currentIndexChanged['QString'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
 #        self.pushButton.clicked.connect(lambda: Dialog.close())
         self.pushButton.clicked.connect(lambda: plt.close())
         self.pushButton.clicked.connect(lambda: self.fermerEtAfficher(MainWindow, parent))
@@ -194,6 +206,7 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "Longueur d\'onde de la lumière (en nm)"))
         self.label_3.setText(_translate("MainWindow", "Largeur des fentes (en mm)"))
         self.label_1.setText(_translate("MainWindow", "Type de graphique"))
+        self.label_7.setText(_translate("MainWindow", "Négliger la diffraction"))
         self.menuAide.setTitle(_translate("MainWindow", "Aide"))
         self.action_propos.setText(_translate("MainWindow", "À propos"))
         self.comboBox.setItemText(0, _translate("MainWindow", "Points lumineux"))
@@ -208,6 +221,16 @@ class Ui_MainWindow(object):
     def disableEnveloppe(self, booleen):
         self.checkBox.setDisabled(booleen)
         self.label_6.setDisabled(booleen)
+
+    def disableDisableDiffraction(self, booleen):
+        self.checkBox_2.setDisabled(booleen)
+        self.label_7.setDisabled(booleen)
+
+    def disableLargeur(self, booleen):
+        self.horizontalSlider_2.setDisabled(booleen)
+        self.lcdNumber_2.setDisabled(booleen)
+        self.label_3.setDisabled(booleen)
+
 
     def fermerEtAfficher(self, MainWindow, window_autre):
 #        if window_autre:
