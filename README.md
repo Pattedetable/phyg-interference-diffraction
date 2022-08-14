@@ -27,7 +27,7 @@ Vous aurez aussi besoin des modules Python suivants :
 
   * Numpy
   * Matplotlib
-  * PyQt5
+  * PyQt6
 
 Si vous utilisez Linux, il est fort probable qu'ils se trouvent dans les dépôts logiciels de votre distribution.
 
@@ -81,7 +81,7 @@ You will also need the following Python modules:
 
   * Numpy
   * Matplotlib
-  * PyQt5
+  * PyQt6
 
 On Linux, you will most likely find these modules in your distribution's repositories.
 

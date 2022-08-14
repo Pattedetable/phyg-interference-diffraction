@@ -16,8 +16,8 @@
 #
 
 
-from PyQt5 import QtCore, QtWidgets
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from PyQt6 import QtCore, QtGui, QtWidgets
+from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.pyplot as plt
 
 from interference_calcul import Graphique
@@ -39,13 +39,12 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
 
-        self.horizontalSlider_3 = QtWidgets.QSlider(self.centralwidget) # Longueur d'onde
+        self.horizontalSlider_3 = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal, self.centralwidget) # Longueur d'onde
         self.horizontalSlider_3.setMinimum(8)
         self.horizontalSlider_3.setMaximum(14)
         self.horizontalSlider_3.setSingleStep(1)
         self.horizontalSlider_3.setPageStep(2)
         self.horizontalSlider_3.setProperty("value", 13)
-        self.horizontalSlider_3.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_3.setObjectName("horizontalSlider_3")
         self.gridLayout.addWidget(self.horizontalSlider_3, 7, 0, 1, 1)
 
@@ -57,12 +56,11 @@ class Ui_MainWindow(object):
         self.label_6.setObjectName("label_6")
         self.gridLayout.addWidget(self.label_6, 11, 0, 1, 1)
 
-        self.horizontalSlider_2 = QtWidgets.QSlider(self.centralwidget) # Largeur des fentes
+        self.horizontalSlider_2 = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal, self.centralwidget) # Largeur des fentes
         self.horizontalSlider_2.setMinimum(2)
         self.horizontalSlider_2.setMaximum(16)
         self.horizontalSlider_2.setSingleStep(1)
         self.horizontalSlider_2.setProperty("value", 4)
-        self.horizontalSlider_2.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_2.setObjectName("horizontalSlider_2")
         self.gridLayout.addWidget(self.horizontalSlider_2, 5, 0, 1, 1)
 
@@ -70,11 +68,10 @@ class Ui_MainWindow(object):
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 8, 0, 1, 1)
 
-        self.horizontalSlider = QtWidgets.QSlider(self.centralwidget) # Nombre de fentes
+        self.horizontalSlider = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal, self.centralwidget) # Nombre de fentes
         self.horizontalSlider.setMinimum(1)
         self.horizontalSlider.setMaximum(10)
         self.horizontalSlider.setProperty("value", 2)
-        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider.setObjectName("horizontalSlider")
         self.gridLayout.addWidget(self.horizontalSlider, 3, 0, 1, 1)
 
@@ -97,11 +94,10 @@ class Ui_MainWindow(object):
         self.comboBox.addItem("")
         self.gridLayout.addWidget(self.comboBox, 1, 0, 1, 1)
 
-        self.horizontalSlider_4 = QtWidgets.QSlider(self.centralwidget) # Distance entre les fentes
+        self.horizontalSlider_4 = QtWidgets.QSlider(QtCore.Qt.Orientation.Horizontal, self.centralwidget) # Distance entre les fentes
         self.horizontalSlider_4.setMinimum(2)
         self.horizontalSlider_4.setMaximum(10)
         self.horizontalSlider_4.setProperty("value", 6)
-        self.horizontalSlider_4.setOrientation(QtCore.Qt.Horizontal)
         self.horizontalSlider_4.setObjectName("horizontalSlider_4")
         self.gridLayout.addWidget(self.horizontalSlider_4, 9, 0, 1, 1)
 
@@ -138,7 +134,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.lcdNumber_4, 8, 1, 1, 1)
 
         self.canvas = FigureCanvas(self.figure)  # Graphique
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.canvas.sizePolicy().hasHeightForWidth())
@@ -156,7 +152,7 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.action_propos = QtWidgets.QAction(MainWindow)
+        self.action_propos = QtGui.QAction(MainWindow)
         self.action_propos.setObjectName("action_propos")
         self.menuAide.addAction(self.action_propos)
         self.menubar.addAction(self.menuAide.menuAction())
@@ -188,8 +184,8 @@ class Ui_MainWindow(object):
         self.checkBox.toggled.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
         self.checkBox_2.toggled.connect(lambda: self.disableDiffraction(self.checkBox_2.isChecked()))
         self.checkBox_2.toggled.connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
-        self.comboBox.currentIndexChanged['QString'].connect(lambda: self.disableEnveloppe(self.comboBox.currentIndex() == 0))
-        self.comboBox.currentIndexChanged['QString'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
+        self.comboBox.currentIndexChanged['int'].connect(lambda: self.disableEnveloppe(self.comboBox.currentIndex() == 0))
+        self.comboBox.currentIndexChanged['int'].connect(lambda: self.graph.Intensite(self.canvas, self.figure, self.horizontalSlider.value(), self.horizontalSlider_2.value(), self.horizontalSlider_3.value(), self.horizontalSlider_4.value(), self.checkBox.isChecked(), self.comboBox.currentIndex(), self.checkBox_2.isChecked()))
 #        self.pushButton.clicked.connect(lambda: Dialog.close())
         self.pushButton.clicked.connect(lambda: plt.close())
         self.pushButton.clicked.connect(lambda: self.fermerEtAfficher(MainWindow, parent))

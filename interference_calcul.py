@@ -61,7 +61,10 @@ class Graphique():
             ax1.set_ylabel('$I/I_0$')
 
             if enveloppe == True:
-                ax1.plot(t, Diff(t) * Inter(0.00000001), 'k--')
+                if diffraction == False:
+                    ax1.plot(t, Diff(t) * Inter(0.00000001), 'k--')
+                else:
+                    ax1.plot(t, t-t+Inter(0.00000001), 'k--')
 
         # Define colour of the curve according to wavelength
             if (l <= 500):

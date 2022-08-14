@@ -16,14 +16,14 @@
 #
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtGui, QtWidgets
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.setWindowModality(QtCore.Qt.ApplicationModal)
+        Dialog.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         Dialog.resize(497, 256)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Fixed, QtWidgets.QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
@@ -32,7 +32,7 @@ class Ui_Dialog(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(Dialog)
         self.label.setOpenExternalLinks(True)
-        self.label.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
+        self.label.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.LinksAccessibleByMouse)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
         self.pushButton = QtWidgets.QPushButton(Dialog)
@@ -46,5 +46,5 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "À propos"))
-        self.label.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">Interference and diffraction</span></p><p align=\"center\"><span style=\" font-size:12pt;\">Copyright 2018-2021 Manuel Barrette</p><p align=\"center\"><span style=\" font-size:12pt;\">License <a href=\"https://www.gnu.org/licenses/gpl-3.0.en.html\"><span style=\" text-decoration: underline; color:#0000ff;\">GNU GPLv3</span></a><\span><\span></p><p align=\"center\"><span style=\" font-size:12pt;\">Source code available on <a href=\"https://github.com/Pattedetable/interference-diffraction\"><span style=\" text-decoration: underline; color:#0000ff;\">GitHub</span></a><\span></p><p align=\"center\"><span style=\" font-size:10pt;\">This software uses libraries from <a href=\"https://www.qt.io/\"><span style=\" text-decoration: underline; color:#0000ff;\">Qt</span></a> under the LGPLv3, <a href=\"https://www.python.org/\"><span style=\" text-decoration: underline; color:#0000ff;\">Python</span></a>, <a href=\"http://www.numpy.org/\"><span style=\" text-decoration: underline; color:#0000ff;\">Numpy</span></a> <a href=\"https://numpy.org/license.html#/\"><span style=\" text-decoration: underline; color:#0000ff;\">(license)</span></a> and <a href=\"https://matplotlib.org/\"><span style=\" text-decoration: underline; color:#0000ff;\">Matplotlib</span></a>.<\span></p></body></html>"))
+        self.label.setText(_translate("Dialog", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; font-weight:600;\">Interference and diffraction</span></p><p align=\"center\"><span style=\" font-size:12pt;\">Copyright 2018-2021 Manuel Barrette</p><p align=\"center\"><span style=\" font-size:12pt;\">License <a href=\"https://www.gnu.org/licenses/gpl-3.0.en.html\"><span style=\" text-decoration: underline; color:#0000ff;\">GNU GPLv3</span></a><\span><\span></p><p align=\"center\"><span style=\" font-size:12pt;\">Source code available on <a href=\"https://github.com/Pattedetable/interference-diffraction\"><span style=\" text-decoration: underline; color:#0000ff;\">GitHub</span></a><\span></p><p align=\"center\"><span style=\" font-size:10pt;\">This software uses libraries from <a href=\"https://www.qt.io/\"><span style=\" text-decoration: underline; color:#0000ff;\">Qt</span></a> under the LGPLv3, <a href=\"https://www.python.org/\"><span style=\" text-decoration: underline; color:#0000ff;\">Python</span></a>, <a href=\"http://www.numpy.org/\"><span style=\" text-decoration: underline; color:#0000ff;\">Numpy</span></a> and <a href=\"https://matplotlib.org/\"><span style=\" text-decoration: underline; color:#0000ff;\">Matplotlib</span></a>.<\span></p></body></html>"))
         self.pushButton.setText(_translate("Dialog", "Fermer"))
