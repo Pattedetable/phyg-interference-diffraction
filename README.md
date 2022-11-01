@@ -55,7 +55,7 @@ La version courte de cette licence est que vous êtes libre d'utiliser ce logici
 
 Le code source est disponible sur [GitHub](https://github.com/Pattedetable/phyg-interference-diffraction).
 
-Ce logiciel utilise des bibliothèques de Qt sous la licence LGPLv3, ainsi que de Python, Numpy et Matplotlib.
+Ce logiciel utilise des bibliothèques de Qt sous les licences GPL/LGPLv3, ainsi que de Python, Numpy et Matplotlib.
 
 
 ## English
@@ -113,4 +113,4 @@ The short version is that you are free to use this software, to modify its sourc
 
 The source code is available on [GitHub](https://github.com/Pattedetable/phyg-interference-diffraction).
 
-This software uses libraries from Qt under the LGPLv3, Python, Numpy and Matplotlib.
+This software uses libraries from Qt under the GPL/LGPLv3, Python, Numpy and Matplotlib.
