@@ -16,13 +16,20 @@
 #
 
 """ Initialize windows and make the main window appear """
-import sys
+import sys, os
 from PyQt6 import QtCore
 from PyQt6.QtWidgets import QApplication, QMainWindow, QDialog
-import interference_main_window
-import dialog_interference
 import platform
 import locale, ctypes
+from glob import glob
+
+results = glob(os.getcwd() + "/**/", recursive=True)
+for result in results:
+    if result[-2] != "_":
+        sys.path.insert(1, result)
+
+import interference_main_window
+import dialog_interference
 
 # Initialize windows
 app = QApplication(sys.argv)
