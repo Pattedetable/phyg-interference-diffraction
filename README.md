@@ -1,6 +1,6 @@
 # Interférence et diffraction
 
-![screenshot](https://raw.githubusercontent.com/Pattedetable/phyg-interference-diffraction/qt6/images/interference_screenshot.png)
+![screenshot](https://raw.githubusercontent.com/Pattedetable/phyg-interference-diffraction/master/images/interference_screenshot.png)
 
 _The English version follows_
 
