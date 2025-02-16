@@ -41,7 +41,7 @@ if systeme_exploitation == 'Windows':
     langwin = ctypes.windll.kernel32
     langue_sys = locale.windows_locale[langwin.GetUserDefaultUILanguage()]
 elif systeme_exploitation == 'Darwin' or 'Linux':
-    langue_sys = locale.getdefaultlocale()[0]
+    langue_sys = locale.getlocale()[0]
 langue_sys = langue_sys[0:2]
 translator = QtCore.QTranslator()
 directory = "locales"
